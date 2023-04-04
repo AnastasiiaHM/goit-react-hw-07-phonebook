@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useCallback } from 'react';
+import { useMemo } from 'react';
 import { setFilter } from '../../redux/filtersSlice';
 import { Input, Label } from './Filter.styled';
 
@@ -13,9 +13,10 @@ export const Filter = () => {
 
     dispatch(setFilter(filterValue));
   };
-  const debouncedChangeHandler = useCallback(debounce(onChange, 1000), [
-    onChange,
-  ]);
+  const debouncedChangeHandler = useMemo(
+    () => debounce(onChange, 1000),
+    [onChange]
+  );
 
   return (
     <div>
