@@ -13,7 +13,7 @@ export const Filter = () => {
 
     dispatch(setFilter(filterValue));
   };
-  const debouncedChangeHandler = useMemo(() => debounce(onChange, 1000), []);
+  const debouncedChangeHandler = useMemo(() => debounce(onChange, 1000), []); //react-hooks/exhaustive-deps
 
   return (
     <div>
