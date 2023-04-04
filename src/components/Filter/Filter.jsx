@@ -13,10 +13,7 @@ export const Filter = () => {
 
     dispatch(setFilter(filterValue));
   };
-  const debouncedChangeHandler = useMemo(
-    () => debounce(onChange, 1000),
-    [onChange]
-  );
+  const debouncedChangeHandler = useMemo(() => debounce(onChange, 1000), []);
 
   return (
     <div>
