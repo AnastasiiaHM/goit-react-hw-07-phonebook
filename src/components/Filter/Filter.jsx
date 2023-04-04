@@ -13,7 +13,9 @@ export const Filter = () => {
 
     dispatch(setFilter(filterValue));
   };
-  const debouncedChangeHandler = useCallback(debounce(onChange, 1000), []);
+  const debouncedChangeHandler = useCallback(debounce(onChange, 1000), [
+    onChange,
+  ]);
 
   return (
     <div>
