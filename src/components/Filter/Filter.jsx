@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { setFilter } from '../../redux/filtersSlice';
 import { Input, Label } from './Filter.styled';
 
@@ -8,15 +8,18 @@ import debounce from 'lodash.debounce';
 export const Filter = () => {
   const dispatch = useDispatch();
 
-  const onChange = e => {
-    const filterValue = e.target.value;
+  const onChange = useCallback(
+    e => {
+      const filterValue = e.target.value;
 
-    dispatch(setFilter(filterValue));
-  };
-  const debouncedChangeHandler = useMemo(() => {
-    const deb = () => debounce(onChange, 1000);
-    return deb();
-  }, []);
+      dispatch(setFilter(filterValue));
+    },
+    [dispatch]
+  );
+  const debouncedChangeHandler = useMemo(
+    () => debounce(onChange, 1000),
+    [onChange]
+  );
 
   return (
     <div>
